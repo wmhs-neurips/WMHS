@@ -834,28 +834,16 @@ main {
   box-sizing: border-box;
 }
 
-.section.speakers {
-  width: 100vw;
-  max-width: none;
-  margin-left: calc(50% - 50vw);
-  padding-left: var(--page-pad);
-  padding-right: var(--page-pad);
-  box-sizing: border-box;
-}
-
-.people-grid.speakers-grid.lineup,
-.people-grid.panel-grid.lineup {
-  --lineup-head: 17rem;
-  max-width: none;
-  width: 100%;
-  justify-content: center;
-}
-
 .people-grid.speakers-grid.lineup {
+  --lineup-head: 17rem;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.4vw, 2.5rem) clamp(1rem, 2vw, 2rem);
-  padding: 0.25rem 0 1.5rem;
+  width: min(72rem, calc(100vw - 2 * var(--page-pad)));
+  max-width: none;
+  margin-left: calc(50% - min(36rem, 50vw - var(--page-pad)));
+  margin-right: auto;
+  gap: 1.35rem 1.1rem;
+  padding: 0.25rem 0 0.5rem;
 }
 
 .speakers-grid.lineup > .person {
@@ -865,7 +853,6 @@ main {
   border-top: 0;
   padding: 0.15rem 0 0;
   box-sizing: border-box;
-  transform: none;
 }
 
 .speakers-grid.lineup > .person:nth-child(-n+3) {
@@ -876,26 +863,9 @@ main {
   grid-column: span 3;
 }
 
-.people-grid.panel-grid.lineup {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.4vw, 2.5rem) clamp(1rem, 2vw, 2rem);
-}
-
-.panel-grid.lineup > .person {
-  min-width: 0;
-  width: 100%;
-  max-width: none;
-  border-top: 0;
-}
-
 .speakers-grid.lineup .avatar-link,
 .speakers-grid.lineup .avatar,
-.speakers-grid.lineup .avatar-photo,
-.panel-grid.lineup .avatar-link,
-.panel-grid.lineup .avatar,
-.panel-grid.lineup .avatar-photo,
-.panel-grid.lineup .avatar-placeholder {
+.speakers-grid.lineup .avatar-photo {
   width: min(var(--lineup-head), 100%);
   max-width: var(--lineup-head);
 }
@@ -1750,23 +1720,19 @@ main {
 }
 
 @media (max-width: 1099px) {
-  .people-grid.speakers-grid.lineup,
-  .people-grid.panel-grid.lineup {
+  .people-grid.speakers-grid.lineup {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .speakers-grid.lineup > .person,
   .speakers-grid.lineup > .person:nth-child(-n+3),
-  .speakers-grid.lineup > .person:nth-child(n+4),
-  .panel-grid.lineup > .person {
+  .speakers-grid.lineup > .person:nth-child(n+4) {
     grid-column: auto;
-    transform: none;
   }
 }
 
 @media (max-width: 699px) {
-  .people-grid.speakers-grid.lineup,
-  .people-grid.panel-grid.lineup {
+  .people-grid.speakers-grid.lineup {
     grid-template-columns: 1fr;
   }
 }
