@@ -834,43 +834,71 @@ main {
   box-sizing: border-box;
 }
 
-.people-grid.speakers-grid.lineup {
-  --speaker-head: 17rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: min(76rem, 100%);
+.section.speakers {
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  padding-left: var(--page-pad);
+  padding-right: var(--page-pad);
+  box-sizing: border-box;
+}
+
+.people-grid.speakers-grid.lineup,
+.people-grid.panel-grid.lineup {
+  --lineup-head: 17rem;
+  max-width: none;
   width: 100%;
-  gap: clamp(0.85rem, 2vw, 1.75rem) clamp(1rem, 2.4vw, 2.25rem);
-  padding: 0.5rem 0 5rem;
+  justify-content: center;
+}
+
+.people-grid.speakers-grid.lineup {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.4vw, 2.5rem) clamp(1rem, 2vw, 2rem);
+  padding: 0.25rem 0 1.5rem;
 }
 
 .speakers-grid.lineup > .person {
-  flex: 0 1 17rem;
   min-width: 0;
-  width: min(17rem, 100%);
-  max-width: 17rem;
+  width: 100%;
+  max-width: none;
   border-top: 0;
   padding: 0.15rem 0 0;
   box-sizing: border-box;
+  transform: none;
+}
+
+.speakers-grid.lineup > .person:nth-child(-n+3) {
+  grid-column: span 4;
+}
+
+.speakers-grid.lineup > .person:nth-child(n+4) {
+  grid-column: span 3;
+}
+
+.people-grid.panel-grid.lineup {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.4vw, 2.5rem) clamp(1rem, 2vw, 2rem);
+}
+
+.panel-grid.lineup > .person {
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+  border-top: 0;
 }
 
 .speakers-grid.lineup .avatar-link,
 .speakers-grid.lineup .avatar,
-.speakers-grid.lineup .avatar-photo {
-  width: var(--speaker-head);
-  max-width: var(--speaker-head);
+.speakers-grid.lineup .avatar-photo,
+.panel-grid.lineup .avatar-link,
+.panel-grid.lineup .avatar,
+.panel-grid.lineup .avatar-photo,
+.panel-grid.lineup .avatar-placeholder {
+  width: min(var(--lineup-head), 100%);
+  max-width: var(--lineup-head);
 }
-
-.speakers-grid.lineup > .person:nth-child(1) { transform: translateY(0); }
-.speakers-grid.lineup > .person:nth-child(2) { transform: translateY(2.35rem); }
-.speakers-grid.lineup > .person:nth-child(3) { transform: translateY(4.05rem); }
-.speakers-grid.lineup > .person:nth-child(4) { transform: translateY(2.55rem); }
-.speakers-grid.lineup > .person:nth-child(5) { transform: translateY(0.15rem); }
-.speakers-grid.lineup > .person:nth-child(6) { transform: translateY(2.25rem); }
-.speakers-grid.lineup > .person:nth-child(7) { transform: translateY(3.95rem); }
 
 .lineup-group {
   margin-top: clamp(2rem, 5vh, 3.25rem);
@@ -1721,26 +1749,25 @@ main {
   }
 }
 
-@media (max-width: 899px) {
-  .people-grid.speakers-grid.lineup {
-    flex-wrap: wrap;
-    --speaker-head: 17rem;
-    gap: 1.15rem 1.35rem;
-    padding-bottom: 0.5rem;
+@media (max-width: 1099px) {
+  .people-grid.speakers-grid.lineup,
+  .people-grid.panel-grid.lineup {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .speakers-grid.lineup > .person,
-  .speakers-grid.lineup > .person:nth-child(n) {
-    flex: 0 1 17rem;
-    max-width: 17rem;
+  .speakers-grid.lineup > .person:nth-child(-n+3),
+  .speakers-grid.lineup > .person:nth-child(n+4),
+  .panel-grid.lineup > .person {
+    grid-column: auto;
     transform: none;
   }
+}
 
-  .speakers-grid.lineup .avatar-link,
-  .speakers-grid.lineup .avatar,
-  .speakers-grid.lineup .avatar-photo {
-    width: min(17rem, 100%);
-    max-width: min(17rem, 100%);
+@media (max-width: 699px) {
+  .people-grid.speakers-grid.lineup,
+  .people-grid.panel-grid.lineup {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1780,7 +1807,4 @@ main {
     transform: none;
   }
 
-  .speakers-grid.lineup > .person {
-    transform: none;
-  }
 }
