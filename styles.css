@@ -1169,6 +1169,47 @@ main {
   font-size: 0.95rem;
 }
 
+.oral-list {
+  display: grid;
+  gap: 0;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.oral-list li {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.oral-list time {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.oral-list a {
+  display: block;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.oral-list span {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 560px) {
+  .oral-list li {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
 .sched-row.break {
   opacity: 0.72;
 }
